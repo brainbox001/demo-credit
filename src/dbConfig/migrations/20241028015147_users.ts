@@ -8,7 +8,10 @@ export async function up(knex: Knex): Promise<void> {
       table.string('name', 255).notNullable();
       table.string('email', 255).unique().notNullable();
       table.string('password', 255).notNullable();
+<<<<<<< HEAD
       table.integer('balance').notNullable().defaultTo(0);
+=======
+>>>>>>> b456af096210a9eef1ba711231411ab367ec41ca
       table.timestamps();
     });
 }
