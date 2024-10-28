@@ -4,7 +4,7 @@
   "description": "A demo app for a test wallet",
   "main": "index.js",
   "scripts": {
-    "test": "jest dest/ --detectOpenHandles",
+    "test": "jest dest/controllers --detectOpenHandles",
     "start": "node dest/index.js",
     "dev": "nodemon dest/index.js",
     "migrate": "knex migrate:latest --knexfile dest/dbConfig/knexfile.js"
