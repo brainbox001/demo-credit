@@ -89,7 +89,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+dest
 
 # Gatsby files
 .cache/
@@ -115,6 +115,7 @@ dist
 
 # DynamoDB Local files
 .dynamodb/
+*.sqlite
 
 # TernJS port file
 .tern-port
