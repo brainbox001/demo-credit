@@ -6,7 +6,7 @@ interface Body {
     name : string;
     email : string;
     password : string;
-    phoneNumber : string;
+    phoneNumber : number;
 }
 
 interface Karma {
@@ -25,42 +25,48 @@ const registerObj : RegisterObj = {
 
 async function register(req:Request, res:Response) : Promise<any> {
     const body : Body = req.body;
-    const name : string = body.name;
-    const email : string = body.email;
-    const password : string = body.password;
-    const accountNumber: number = parseInt(body.phoneNumber);
-
-    if (!name || !email || !password) return res.status(400).json({error : 'Invalid credentials provided'});
+    const {name, email, password, phoneNumber} = body;
+    
+    if (!name || !email || !password || !phoneNumber) return res.status(400).json({error : 'Invalid credentials provided'});
 
     const karmaResponse = await registerObj.karmaValidate(email);
     if (karmaResponse !== 404) {
         return karmaResponse === 200 ? res.status(400).json({error : "Signup can't be completed user data not accepted"}) : res.status(500).json({error : "signup can't be processed, please try again after few moments"})
     };
 
-    const userExists = await db('users').where({ email }).first();
-    if(userExists) return res.status(400).json({error : 'User with email address already exists'});
-
+    const userExists = await db('users').where({ email }).orWhere({accountNumber : phoneNumber}).first();
+    
+    if(userExists) {   
+        let _which = 'email address';
+        if (userExists.accountNumber === phoneNumber) _which = 'phone number';
+        return res.status(400).json({error : `User with ${_which} already exists`});
+    };
+        
     const newUser = {
         name,
         email,
         password, // For the purpose of testing, passwords are not hashed
-        accountNumber,
+        phoneNumber,
         created_at : new Date(),
         updated_at : new Date()
     };
     try {
-        await db('users').insert(newUser)
+        await db('users').insert(newUser);
         
     } catch (error) {
         return res.status(500).json({error : 'An error occured while trying to signup user'});
     }
 
-    const user = {name, email}
-    res.cookie('session', JSON.stringify(user));
+    const user = {email, password}
+    res.cookie('session', JSON.stringify(user), {
+        httpOnly : true,
+    });
 
     res.status(201).json({
-        ...user,
-        balance : 0
+        email,
+        name,
+        balance : 0,
+        phoneNumber
     });
 }
 

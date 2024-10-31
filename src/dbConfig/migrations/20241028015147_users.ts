@@ -9,7 +9,7 @@ export async function up(knex: Knex): Promise<void> {
       table.string('email', 255).unique().notNullable();
       table.string('password', 255).notNullable();
       table.integer('balance').notNullable().defaultTo(0);
-      table.integer('accountNumber').notNullable();
+      table.integer('accountNumber').unsigned().notNullable().unique();
       table.timestamps();
     });
 }
