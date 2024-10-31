@@ -11,7 +11,8 @@ describe('testing and logging the parsed values by the parser middleware', () =>
                 name : 'tested',
                 phoneNumber : '89283474',
                 amount : 200,
-                userAcc : '34757566'
+                userAcc : '34757566',
+                password : 12345
             }
         } as unknown as Request;
             
@@ -24,5 +25,6 @@ describe('testing and logging the parsed values by the parser middleware', () =>
         await parser(req, res, next);
         expect(typeof req.body.phoneNumber).toEqual('number');
         expect(typeof req.body.userAcc).toEqual('number');
+        expect(typeof req.body.password).toEqual('string');
     });
 })

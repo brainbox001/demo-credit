@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import db from "../../dbConfig/dbConfig";
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
 interface Body {
     name : string;
@@ -71,11 +73,12 @@ async function register(req:Request, res:Response) : Promise<any> {
 }
 
 async function karmaValidate(email:string) : Promise<number | Karma> {
-    let status : number;
+    let status : number =  2;
     try {
+    
         const response = await axios.get(`https://adjutor.lendsqr.com/v2/verification/karma/${email}`, {
             headers : {
-                "Authorization" : "Bearer sk_live_kMsDJ3vqPz6wr3MlOrus1bNC2c8gHKgIimIHV4zR"
+                "Authorization" :  `Bearer ${process.env.API_KEY}`
             }
         });
         status = response.status

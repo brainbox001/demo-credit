@@ -3,6 +3,7 @@ import parser from "./middlewares/parser";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routers/userRoutes";
 import transactionRoutes from "./routers/transactionRoutes";
+import home from "./controllers/home";
 
 const app = express();
 const port = 3001;
@@ -11,14 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(parser);
 
-app.get('/', (req: Request, res: Response) => {
-    let userAgent: string | undefined;
-    userAgent = req.headers['user-agent']
-
-      res.status(200).json({
-        welcome: `Welcome to novel app ${userAgent}`,
-      })
-    });
+app.get('/', home);
 
 app.use('/', userRoutes);
 app.use('/', transactionRoutes);
