@@ -33,7 +33,7 @@ const config: { [key: string]: Knex.Config } = {
   },
 
   production: {
-    client: 'mysql',
+    client: 'mysql2',
     connection: {
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT!),
@@ -43,6 +43,19 @@ const config: { [key: string]: Knex.Config } = {
   },
     migrations: {
       tableName: 'knex_migrations'
+    },
+    pool: {
+      afterCreate: (conn:any, done:(err:typeof Error, conn: any) => any) => {
+        conn.ping((err: typeof Error, fin: typeof Error) => {
+          if (err) {
+            console.error('Database connection failed:', err);
+            done(err, conn);
+          } else {
+            console.log('Database connected successfully.');
+            done(fin, conn);
+          }
+        });
+      }
     }
   }
 };
