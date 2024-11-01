@@ -42,10 +42,30 @@ Respository for a demo wallet application.
         - email : string *required.
         - password : string *required.
         - phoneNumber : number *required.
-        - The request would accept strings for phoneNumber and numbers for password, a parser function will parse them before forwarding to the controller.
 + **POST /login :**
     - Logs in a user.
     - **params :**
         - email : string *required.
         - password : string *required.
-
++ **POST /fund :**
+    - Handles request to fund user's wallet.
+    - Assumes a third party had handled communications with the user's bank and returned an approved status.
+    -  **params :**
+        - status **"approved"**: string *required.
+        - accountNo : number *required.
+        - amount : number *required.
++ **POST /transfer :**
+    - Handles transfer of funds from a user wallet to another.
+    -  **note :** You can't transfer funds from another user's account, except you have access to that user's account.
+    -  **params :**
+        - sender *you : number *required.
+        - receiver : number *required.
+        - amount : number *required.
++ **POST /withdraw :**
+    - Handles withdrawl of funds from a user's wallet.
+    - **note :** You can't withdraw funds from another user's account, except you have access to that user's account.
+    - **params :**
+        - userAcc : number *required.
+        - amount : number *required.
+  
++ The request would accept strings for phoneNumber, accountNo, sender, receiver, amount, userACC and numbers for password, a parser function will parse them before forwarding to the controller, but for consisteency, use the right parameters.
