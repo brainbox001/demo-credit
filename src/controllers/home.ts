@@ -24,6 +24,6 @@ export default async function home(req:Request, res:Response) : Promise<any> {
     userAgent = req.headers['user-agent'];
 
     res.status(200).json({
-        welcome: `Welcome to novel app ${userAgent}`
+        welcome: `Welcome to demo credit ${userAgent}`
     });
 };
