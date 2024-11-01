@@ -11,7 +11,14 @@ export default async function parser(req:Request, res:Response, next:NextFunctio
             let newVal = req.body[val];
             req.body[val] = newVal.toString();
         }
-        else req.body[val] = parseInt(req.body[val]);
+        else {
+            req.body[val] = parseInt(req.body[val]);
+            if(val === 'phoneNumber') {
+                let number = req.body[val];
+                let accNo = Math.floor(number/10);
+                req.body[val] = accNo;
+            }
+        }
     }
     next();
 };

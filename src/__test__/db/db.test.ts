@@ -10,7 +10,7 @@ describe('testing knex', () => {
     it('can create a user', async() => {
         let count : number | undefined | string;
         try {
-            await db('users').insert({ name: 'test', email: 'test@example.com', password: 'string12', accountNumber : 9041113838, created_at : new Date() });
+            await db('users').insert({ name: 'test', email: 'test@example.com', password: 'string12', accountNumber : 904111383, created_at : new Date() });
             console.log("Data inserted");
             const returnedObj = await db('users').count('* as total');
             if (returnedObj[0])count = returnedObj[0].total
@@ -25,7 +25,7 @@ describe('testing knex', () => {
     it('can validate and detect duplicate records', async() => {
         let count : number | undefined | string;
         try {
-            await db('users').insert({ name: 'test', email: 'test@example.com', password: 'string12', accountNumber : 9041113838, created_at : new Date() });
+            await db('users').insert({ name: 'test', email: 'test@example.com', password: 'string12', accountNumber : 904111383, created_at : new Date() });
             const returnedObj = await db('users').count('* as total');
             if (returnedObj[0])count = returnedObj[0].total
             
@@ -75,9 +75,9 @@ describe('testing knex', () => {
     it('testing the whereIn method', async() => {
         let user : any;
         try {
-            await db('users').insert({ name: 'tested', email: 'tested@example.com', password: 'string123', accountNumber : 8168958556, created_at : new Date() });
+            await db('users').insert({ name: 'tested', email: 'tested@example.com', password: 'string123', accountNumber : 816895855, created_at : new Date() });
             let userId = [2, 1]
-            user = await db('users').whereIn('id', userId).select('id', 'email');
+            user = await db('users').whereIn('id', userId).select('id', 'email', 'accountNumber');
         } catch (err) {
             console.error(err);
         }
@@ -95,9 +95,9 @@ describe('testing knex', () => {
         try {
 
             user = await db('users')
-            .where({accountNumber : 9041113838})
+            .where({accountNumber : 904111383})
             .update({balance : 300})
-            .where({accountNumber : 812377477567})
+            .where({accountNumber : 812377478})
             .update({balance : 600});
         } catch (err) {
             console.error(err);
@@ -114,7 +114,7 @@ describe('testing knex', () => {
         try {
             const newTrans = await db('transactions').insert({
                 transType : 'fund',
-                sender : 9041113838,
+                sender : 904111383,
                 amount : 200,
                 created_at : new Date()
             });

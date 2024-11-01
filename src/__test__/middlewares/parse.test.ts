@@ -9,7 +9,7 @@ describe('testing and logging the parsed values by the parser middleware', () =>
                 status : 'approved',
                 email : 'test@eg.com',
                 name : 'tested',
-                phoneNumber : '89283474',
+                phoneNumber : '8928347489',
                 amount : 200,
                 userAcc : '34757566',
                 password : 12345
@@ -23,7 +23,7 @@ describe('testing and logging the parsed values by the parser middleware', () =>
         let next : NextFunction = jest.fn();
 
         await parser(req, res, next);
-        expect(typeof req.body.phoneNumber).toEqual('number');
+        expect(req.body.phoneNumber).toEqual(892834748);
         expect(typeof req.body.userAcc).toEqual('number');
         expect(typeof req.body.password).toEqual('string');
     });
