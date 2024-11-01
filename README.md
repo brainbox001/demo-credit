@@ -24,3 +24,28 @@ Respository for a demo wallet application.
 ### Database schema
   + The database schema e-r diagram link is pasted below:
   + [db e-r diagram](https://dbdesigner.page.link/PU2n88tgMTGbR7jh7)
+
+### Setup
+  + git clone https://github.com/brainbox001/demo-credit .
+  + Install node js
+  + run npm install
+  + run npx tsc
+  + run npm migrate
+  + run npm run dev (for development environment) || npm start (for production environment).
+### Endpoints
++ **GET / :**
+  - returns a welcome message for unauthenticated users and user's details for authenticated users.
++ **POST /register :**
+    - Registers a new user.
+    - **params :**
+        - name : string *required.
+        - email : string *required.
+        - password : string *required.
+        - phoneNumber : number *required.
+        - The request would accept strings for phoneNumber and numbers for password, a parser function will parse them before forwarding to the controller.
++ **POST /login :**
+    - Logs in a user.
+    - **params :**
+        - email : string *required.
+        - password : string *required.
+
