@@ -21,12 +21,11 @@ export default async function home(req:Request, res:Response) : Promise<any> {
             };
         } catch (error) {      
             console.log(error); 
-        
-        }finally{
-            userAgent = req.headers['user-agent'];
-            return res.status(200).json({
-                welcome: `Welcome to demo credit ${userAgent}`
-            })
         }
+        
     };
+    userAgent = req.headers['user-agent'];
+    return res.status(200).json({
+        welcome: `Welcome to demo credit ${userAgent}`
+    })
 };
