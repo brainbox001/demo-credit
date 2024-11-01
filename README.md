@@ -22,5 +22,5 @@ Respository for a demo wallet application.
     - fund account
     - transfer funds
    #### Database schema
-    - The database schema e-r diagram link is pasted below:
-    - [db e-r diagram](https://dbdesigner.page.link/PU2n88tgMTGbR7jh7)
+     -The database schema e-r diagram link is pasted below:
+        -[db e-r diagram](https://dbdesigner.page.link/PU2n88tgMTGbR7jh7)
