@@ -44,6 +44,7 @@ export default async function withdraw(req:Request, res:Response) : Promise<any>
         await db('transactions').insert(withdrawal);
         
     } catch (error) {
+        console.log(error);
         return res.status(500).json({error : 'An error occured while trying to process payments'});
     }
     res.status(200).json({

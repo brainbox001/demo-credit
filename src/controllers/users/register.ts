@@ -30,32 +30,32 @@ async function register(req:Request, res:Response) : Promise<any> {
     const {name, email, password, phoneNumber} = body;
     
     if (!name || !email || !password || !phoneNumber) return res.status(400).json({error : 'Invalid credentials provided'});
+    try{
+        const karmaResponse = await registerObj.karmaValidate(email);
+        if (karmaResponse !== 404) {
+            return karmaResponse === 200 ? res.status(400).json({error : "Signup can't be completed user data not accepted"}) : res.status(500).json({error : "signup can't be processed, please try again after few moments"})
+        };
 
-    const karmaResponse = await registerObj.karmaValidate(email);
-    if (karmaResponse !== 404) {
-        return karmaResponse === 200 ? res.status(400).json({error : "Signup can't be completed user data not accepted"}) : res.status(500).json({error : "signup can't be processed, please try again after few moments"})
-    };
-
-    const userExists = await db('users').where({ email }).orWhere({accountNumber : phoneNumber}).first();
-    
-    if(userExists) {   
-        let _which = 'email address';
-        if (userExists.accountNumber === phoneNumber) _which = 'phone number';
-        return res.status(400).json({error : `User with ${_which} already exists`});
-    };
+        const userExists = await db('users').where({ email }).orWhere({accountNumber : phoneNumber}).first();
         
-    const newUser = {
-        name,
-        email,
-        password, // For the purpose of testing, passwords are not hashed
-        phoneNumber,
-        created_at : new Date(),
-        updated_at : new Date()
-    };
-    try {
+        if(userExists) {   
+            let _which = 'email address';
+            if (userExists.accountNumber === phoneNumber) _which = 'phone number';
+            return res.status(400).json({error : `User with ${_which} already exists`});
+        };
+            
+        const newUser = {
+            name,
+            email,
+            password, // For the purpose of testing, passwords are not hashed
+            phoneNumber,
+            created_at : new Date(),
+            updated_at : new Date()
+        };
         await db('users').insert(newUser);
         
     } catch (error) {
+        console.log(error);
         return res.status(500).json({error : 'An error occured while trying to signup user'});
     }
 
