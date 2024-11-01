@@ -10,7 +10,12 @@ describe('testing knex', () => {
     it('can create a user', async() => {
         let count : number | undefined | string;
         try {
-            await db('users').insert({ name: 'test', email: 'test@example.com', password: 'string12', accountNumber : 904111383, created_at : new Date() });
+            await db('users').insert({
+                name : "tested again",
+                email : "testedag@example.com",
+                password : "string12",
+                accountNumber : 803681809
+            });
             console.log("Data inserted");
             const returnedObj = await db('users').count('* as total');
             if (returnedObj[0])count = returnedObj[0].total

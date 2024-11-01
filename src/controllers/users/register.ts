@@ -48,7 +48,7 @@ async function register(req:Request, res:Response) : Promise<any> {
             name,
             email,
             password, // For the purpose of testing, passwords are not hashed
-            phoneNumber,
+            accountNumber : phoneNumber,
             created_at : new Date(),
             updated_at : new Date()
         };
