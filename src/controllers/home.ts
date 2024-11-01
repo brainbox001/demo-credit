@@ -15,6 +15,7 @@ export default async function home(req:Request, res:Response) : Promise<any> {
         try {
             const user = await db('users').where({email}).first().select('name', 'email', 'balance', 'accountNumber', 'password');
             if(user && user.password === password) {
+                delete user.password;
                 return res.status(200).json({
                     ...user
                 });
