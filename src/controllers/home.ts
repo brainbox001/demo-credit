@@ -18,7 +18,7 @@ export default async function home(req:Request, res:Response) : Promise<any> {
                 ...user
             });
         };
-    }
+    };
 
     let userAgent: string | undefined;
     userAgent = req.headers['user-agent'];
