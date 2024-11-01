@@ -1,2 +1,8 @@
-# demo-credit
-Respository for a test wallet
+# Demo-credit
+Respository for a demo wallet application.
+
+## Tech stacks:
+Node.js(express)
+Typescript
+Mysql(knex js ORM)
+
