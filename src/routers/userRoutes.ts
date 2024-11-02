@@ -1,11 +1,11 @@
 import express from 'express';
 import registerObj from '../controllers/users/register';
-
-const {register} = registerObj;
+import login from '../controllers/users/login';
 
 const userRoutes = express.Router()
 userRoutes.use(express.json());
 
 userRoutes.post('/register', register);
+userRoutes.post('/login', login);
 
 export default userRoutes;
