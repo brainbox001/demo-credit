@@ -6,7 +6,7 @@ interface Body {
     password : string;
 }
 
-export default async function login(req:Request, res:Response) {
+export default async function login(req:Request, res:Response) : Promise<any> {
     const body = req.body;
     const {email, password} = body;
     if (!email || !password) return res.status(400).json({error : 'Invalid credentials provided'});
