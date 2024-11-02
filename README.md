@@ -45,7 +45,7 @@ Respository for a demo wallet application.
         - name : string *required.
         - email : string *required.
         - password : string *required.
-        - phoneNumber : number *required.
+        - phoneNumber *10 digits : number *required.
 + **POST /login :**
     - Logs in a user.
     - **params :**
