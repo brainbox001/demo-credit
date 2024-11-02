@@ -47,13 +47,13 @@ Respository for a demo wallet application.
         - password : string *required.
         - phoneNumber *10 digits : number *required.
 + **POST /login :**
-    - Logs in a user.
-+ **POST /logout :**
-    - Logs out a user.
-      
+    - Logs in a user. 
     - **params :**
         - email : string *required.
         - password : string *required.
++ **POST /logout :**
+    - Logs out a user.
+      
 + **POST /fund :**
     - Handles request to fund user's wallet.
     - Assumes a third party function or service had handled communications with the user's bank and returned an approved status.
