@@ -1,7 +1,8 @@
 # Demo-credit
 Respository for a demo wallet application.
-### URl
-  + https://marcus-daniel-lendsqr-be-test.onrender.com
+### URL
+  + App's url - https://marcus-daniel-lendsqr-be-test.onrender.com .
+  + App's review - https://docs.google.com/document/d/19dCTSMWMoc4D90tWG068EAZV8EjU-rG9_arfJK-KF7k/edit?usp=sharing .
 ### Note :
 + If trying to access the app and it delays to load, that's because the cloud service has spin down the app due to inactivity, you just have to wait for about 2 minutes or less.
 
