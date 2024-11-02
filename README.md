@@ -48,6 +48,9 @@ Respository for a demo wallet application.
         - phoneNumber *10 digits : number *required.
 + **POST /login :**
     - Logs in a user.
++ **POST /logout :**
+    - Logs out a user.
+      
     - **params :**
         - email : string *required.
         - password : string *required.
